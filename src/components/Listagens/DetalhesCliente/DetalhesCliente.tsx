@@ -1,22 +1,22 @@
 
-import { useEffect, useState, type JSX } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PagamentoRequests from "../../../fetch/PagamentoRequests";
-import type { PagamentoDTO } from "../../../dto/PagamentoDTO";
+import ClienteRequests from "../../../fetch/ClienteRequests";
+import type { ClienteDTO } from "../../../dto/ClienteDTO";
 
-interface DetalhesPagamentoProps {
-    idPagamento: number;
+interface DetalhesClienteProps {
+    idCliente: number;
 }
 
-function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps): JSX.Element {
-    const [pagamento, setPagamento] = useState<PagamentoDTO | null>(null);
+function DetalhesCliente({ idCliente }: DetalhesClienteProps) {
+    const [cliente, setCliente] = useState<ClienteDTO | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!idPagamento || isNaN(idPagamento)) {
-            setError("ID do pagamento inválido.");
+        if (!idCliente || isNaN(idCliente)) {
+            setError("ID do cliente inválido.");
             setLoading(false);
             return;
         }
@@ -26,30 +26,23 @@ function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps): JSX.Element
             setError(null);
 
             try {
-                const dados = await PagamentoRequests.obterPagamentoPorId(idPagamento);
+                const dados = await ClienteRequests.obterClientePorId(idCliente);
 
                 if (dados) {
-                    setPagamento(dados);
+                    setCliente(dados);
                 } else {
-                    setError("Pagamento não encontrado.");
+                    setError("Cliente não encontrado.");
                 }
             } catch (err) {
-                console.error("Erro ao carregar detalhes do pagamento:", err);
-                setError("Ocorreu um erro ao buscar as informações do pagamento.");
+                console.error("Erro ao carregar detalhes do cliente:", err);
+                setError("Ocorreu um erro ao buscar as informações do cliente.");
             } finally {
                 setLoading(false);
             }
         }
 
         buscarDados();
-    }, [idPagamento]);
-
-    const formatarValor = (valor: number) => {
-        return valor.toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL"
-        });
-    };
+    }, [idCliente]);
 
     if (loading) {
         return (
@@ -67,12 +60,12 @@ function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps): JSX.Element
         );
     }
 
-    if (error || !pagamento) {
+    if (error || !cliente) {
         return (
             <div style={{ minHeight: "100vh", backgroundColor: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center", padding: "16px" }}>
                 <div style={{ backgroundColor: "#ffffff", borderRadius: "16px", padding: "40px", maxWidth: "400px", width: "100%", textAlign: "center" }}>
                     <h2 style={{ fontSize: "1.1rem", fontWeight: "bold", color: "#000000", marginBottom: "8px" }}>
-                        Erro ao carregar pagamento
+                        Erro ao carregar cliente
                     </h2>
 
                     <p style={{ fontSize: "0.875rem", color: "#999999", marginBottom: "24px" }}>
@@ -80,7 +73,7 @@ function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps): JSX.Element
                     </p>
 
                     <button
-                        onClick={() => navigate("/lista/pagamentos")}
+                        onClick={() => navigate("/lista/clientes")}
                         style={{ padding: "10px 24px", backgroundColor: "#ff7300", color: "#ffffff", border: "none", borderRadius: "10px", fontWeight: "bold", cursor: "pointer", fontSize: "0.875rem" }}
                     >
                         Voltar para a lista
@@ -90,8 +83,6 @@ function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps): JSX.Element
         );
     }
 
-    const statusPago = pagamento.status?.toUpperCase() === "PAGO";
-
     return (
         <div style={{ minHeight: "100vh", backgroundColor: "#f3f4f6", padding: "32px 16px" }}>
             <div style={{ width: "100%", maxWidth: "900px", margin: "0 auto" }}>
@@ -99,16 +90,16 @@ function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps): JSX.Element
                 {/* Navegação */}
                 <div style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "0.875rem", marginBottom: "24px" }}>
                     <button
-                        onClick={() => navigate("/lista/pagamentos")}
+                        onClick={() => navigate("/lista/clientes")}
                         style={{ color: "#ff7300", fontWeight: "600", background: "none", border: "none", cursor: "pointer", fontSize: "0.875rem" }}
                     >
-                        Pagamentos
+                        Clientes
                     </button>
 
                     <span style={{ color: "#999999" }}>/</span>
 
                     <span style={{ color: "#666666", fontWeight: "500" }}>
-                        Pagamento #{pagamento.idPagamento}
+                        Cliente #{cliente.idCliente}
                     </span>
                 </div>
 
@@ -118,32 +109,27 @@ function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps): JSX.Element
                     <div style={{ width: "256px", flexShrink: 0, backgroundColor: "#ffffff", borderRadius: "16px", border: "1px solid #f0f0f0", padding: "24px", display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }}>
 
                         <div style={{ width: "80px", height: "80px", borderRadius: "50%", backgroundColor: "#ff7300", display: "flex", alignItems: "center", justifyContent: "center", color: "#ffffff", fontSize: "1.5rem", fontWeight: "bold" }}>
-                            <i className="pi pi-wallet" />
+                            <i className="pi pi-user" />
                         </div>
 
                         <div style={{ textAlign: "center" }}>
                             <h2 style={{ fontSize: "1rem", fontWeight: "bold", color: "#000000", margin: 0 }}>
-                                Pagamento #{pagamento.idPagamento}
+                                {cliente.nome}
                             </h2>
                         </div>
-
-                        <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", padding: "4px 12px", borderRadius: "999px", fontSize: "0.75rem", fontWeight: "600", backgroundColor: statusPago ? "#f0fdf4" : "#fef2f2", color: statusPago ? "#15803d" : "#b91c1c" }}>
-                            <span style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: statusPago ? "#22c55e" : "#ef4444" }} />
-                            {pagamento.status ?? "Não informado"}
-                        </span>
 
                         <div style={{ width: "100%", borderTop: "1px solid #f0f0f0", marginTop: "8px" }} />
 
                         <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "8px" }}>
                             <button
-                                onClick={() => navigate(`/atualizar/pagamento/${pagamento.idPagamento}`)}
+                                onClick={() => navigate(`/atualizar/cliente/${cliente.idCliente}`)}
                                 style={{ width: "100%", backgroundColor: "#ff7300", color: "#ffffff", border: "none", borderRadius: "10px", padding: "10px", fontWeight: "bold", cursor: "pointer", fontSize: "0.875rem" }}
                             >
-                                Editar Pagamento
+                                Editar Cliente
                             </button>
 
                             <button
-                                onClick={() => navigate("/lista/pagamentos")}
+                                onClick={() => navigate("/lista/clientes")}
                                 style={{ width: "100%", backgroundColor: "#ffffff", color: "#000000", border: "1px solid #e0e0e0", borderRadius: "10px", padding: "10px", fontWeight: "bold", cursor: "pointer", fontSize: "0.875rem" }}
                             >
                                 Voltar
@@ -151,27 +137,27 @@ function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps): JSX.Element
                         </div>
                     </div>
 
-                    {/* Informações do pagamento */}
+                    {/* Informações do cliente */}
                     <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "16px", minWidth: "280px" }}>
 
                         <div style={{ backgroundColor: "#ffffff", borderRadius: "16px", border: "1px solid #f0f0f0", padding: "24px" }}>
 
                             <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "20px" }}>
                                 <div style={{ width: "28px", height: "28px", borderRadius: "8px", backgroundColor: "#ff7300", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                                    <i className="pi pi-wallet" style={{ color: "#ffffff", fontSize: "0.75rem" }} />
+                                    <i className="pi pi-id-card" style={{ color: "#ffffff", fontSize: "0.75rem" }} />
                                 </div>
 
                                 <h3 style={{ fontSize: "0.875rem", fontWeight: "bold", color: "#000000", textTransform: "uppercase", letterSpacing: "0.05em", margin: 0 }}>
-                                    Dados do Pagamento
+                                    Dados Pessoais
                                 </h3>
                             </div>
 
                             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
-                                <Campo label="ID do Pagamento" valor={String(pagamento.idPagamento ?? "—")} icone="pi-hashtag" />
+                                <Campo label="ID do Cliente" valor={String(cliente.idCliente ?? "—")} icone="pi-hashtag" />
 
-                                <Campo label="Status" valor={pagamento.status ?? "Não informado"} icone="pi-info-circle" />
+                                <Campo label="Nome Completo" valor={cliente.nome} icone="pi-user" />
 
-                                <Campo label="ID da Ordem de Serviço" valor={String(pagamento.idOrdem)} icone="pi-file" />
+                                <Campo label="CPF" valor={cliente.cpf} icone="pi-id-card" />
                             </div>
                         </div>
 
@@ -179,18 +165,18 @@ function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps): JSX.Element
 
                             <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "20px" }}>
                                 <div style={{ width: "28px", height: "28px", borderRadius: "8px", backgroundColor: "#ff7300", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                                    <i className="pi pi-credit-card" style={{ color: "#ffffff", fontSize: "0.75rem" }} />
+                                    <i className="pi pi-address-book" style={{ color: "#ffffff", fontSize: "0.75rem" }} />
                                 </div>
 
                                 <h3 style={{ fontSize: "0.875rem", fontWeight: "bold", color: "#000000", textTransform: "uppercase", letterSpacing: "0.05em", margin: 0 }}>
-                                    Informações Financeiras
+                                    Informações de Contato
                                 </h3>
                             </div>
 
                             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
-                                <Campo label="Valor do Pagamento" valor={formatarValor(pagamento.valor)} icone="pi-dollar" />
+                                <Campo label="Telefone" valor={cliente.telefone} icone="pi-phone" />
 
-                                <Campo label="Forma de Pagamento" valor={pagamento.formaPagamento ?? "Não informado"} icone="pi-credit-card" />
+                                <Campo label="E-mail" valor={cliente.email} icone="pi-envelope" />
                             </div>
                         </div>
 
@@ -227,4 +213,4 @@ function Campo({ label, valor, icone }: CampoProps) {
     );
 }
 
-export default DetalhesPagamento;
+export default DetalhesCliente;
