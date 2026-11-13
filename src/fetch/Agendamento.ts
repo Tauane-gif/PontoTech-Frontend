@@ -4,6 +4,46 @@ class AgendamentoRequests {
     private readonly serverURL = "http://localhost:3333";
     private readonly endpointAgendamento = "/api/agendamentos";
 
+    private paraDTO(raw: any): AgendamentoDTO {
+        return {
+            idAgendamento: raw.idAgendamento ?? raw.id_agendamento,
+            idCliente: raw.idCliente ?? raw.id_cliente,
+            idAparelho: raw.idAparelho ?? raw.id_aparelho,
+            dataAgendamento: raw.dataAgendamento ?? raw.data_agendamento ?? raw.data,
+            horario: raw.horario ?? raw.hora,
+            status: raw.status ?? raw.statusAgendamento ?? raw.status_agendamento,
+            descricao: raw.descricao
+        };
+    }
+
+    async obterListaDeAgendamentos(): Promise<AgendamentoDTO[]> {
+        try {
+            const token = localStorage.getItem("token");
+            const respostaAPI = await fetch(`${this.serverURL}${this.endpointAgendamento}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-access-token": `${token}`
+                }
+            });
+
+            if (!respostaAPI.ok) {
+                throw new Error(
+                    `Não foi possível listar os agendamentos. Erro ${respostaAPI.status}: ${respostaAPI.statusText}`
+                );
+            }
+
+            const lista: unknown = await respostaAPI.json();
+            if (!Array.isArray(lista)) {
+                throw new Error("A API retornou uma lista de agendamentos inválida.");
+            }
+
+            return lista.map((raw: any) => this.paraDTO(raw));
+        } catch (error) {
+            console.error("Erro ao buscar a lista de agendamentos.", error);
+            return [];
+        }
+    }
+
     async obterAgendamentoPorId(idAgendamento: number): Promise<AgendamentoDTO | undefined> {
         try {
             const token = localStorage.getItem("token");
@@ -24,15 +64,7 @@ class AgendamentoRequests {
             }
 
             const raw = await respostaAPI.json();
-            return {
-                idAgendamento: raw.idAgendamento ?? raw.id_agendamento,
-                idCliente: raw.idCliente ?? raw.id_cliente,
-                idAparelho: raw.idAparelho ?? raw.id_aparelho,
-                dataAgendamento: raw.dataAgendamento ?? raw.data_agendamento ?? raw.data,
-                horario: raw.horario ?? raw.hora,
-                status: raw.status ?? raw.statusAgendamento ?? raw.status_agendamento,
-                descricao: raw.descricao
-            };
+            return this.paraDTO(raw);
         } catch (error) {
             console.error("Erro ao buscar agendamento por ID.", error);
             return undefined;
