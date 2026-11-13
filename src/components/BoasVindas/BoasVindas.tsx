@@ -8,7 +8,7 @@ function BoasVindas(): JSX.Element {
     return (
         <main style={{
             minHeight: '88vh',
-            backgroundColor: '#fff0f6',
+            backgroundColor: '#ffffff',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -20,14 +20,14 @@ function BoasVindas(): JSX.Element {
                     fontSize: '3.5rem',
                     fontWeight: 900,
                     marginBottom: '16px',
-                    color: '#333'
+                    color: '#cc5f80'
                 }}>
-                    BEM-VINDO AO <span style={{ color: '#ec4899' }}>PONTOTECH</span>
+                    BEM-VINDO AO <span style={{ color: '#e275c7' }}>PONTOTECH</span>
                 </h1>
 
                 <p style={{
                     fontSize: '1rem',
-                    color: '#666',
+                    color: '#cc5f80',
                     maxWidth: '500px',
                     margin: '0 auto 32px',
                     lineHeight: 1.7
@@ -39,8 +39,8 @@ function BoasVindas(): JSX.Element {
                 <button
                     onClick={() => navigate('/login')}
                     style={{
-                        backgroundColor: '#ec4899',
-                        color: 'white',
+                        backgroundColor: '#e275c7',
+                        color: '#cc5f80',
                         border: 'none',
                         borderRadius: '8px',
                         padding: '14px 36px',

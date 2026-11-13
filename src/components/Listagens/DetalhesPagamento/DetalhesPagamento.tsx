@@ -65,7 +65,7 @@ function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps) {
                 role="status"
                 style={{
                     minHeight: "100vh",
-                    backgroundColor: "#f3f4f6",
+                    backgroundColor: "#ffffff",
                     display: "flex",
                     alignItems: "flex-start",
                     justifyContent: "center",
@@ -84,7 +84,7 @@ function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps) {
             <main
                 style={{
                     minHeight: "100vh",
-                    backgroundColor: "#f3f4f6",
+                    backgroundColor: "#ffffff",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -105,7 +105,7 @@ function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps) {
                     <h2 style={{ fontSize: "1.1rem", fontWeight: "bold", color: "#000000", marginBottom: "8px" }}>
                         Erro ao carregar pagamento
                     </h2>
-                    <p style={{ fontSize: "0.875rem", color: "#666666", marginBottom: "24px" }}>
+                    <p style={{ fontSize: "0.875rem", color: "#cc5f80", marginBottom: "24px" }}>
                         {erro ?? "Pagamento não encontrado."}
                     </p>
                     <button
@@ -113,8 +113,8 @@ function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps) {
                         onClick={() => navigate("/lista/pagamentos")}
                         style={{
                             padding: "10px 24px",
-                            backgroundColor: "#ff7300",
-                            color: "#ffffff",
+                            backgroundColor: "#e275c7",
+                            color: "#cc5f80",
                             border: "none",
                             borderRadius: "10px",
                             fontWeight: "bold",
@@ -134,14 +134,14 @@ function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps) {
         : "Não informado";
 
     return (
-        <main style={{ minHeight: "100vh", backgroundColor: "#f3f4f6", padding: "32px 16px" }}>
+        <main style={{ minHeight: "100vh", backgroundColor: "#ffffff", padding: "32px 16px" }}>
             <div style={{ width: "100%", maxWidth: "900px", margin: "0 auto" }}>
                 <nav aria-label="Navegação estrutural" style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "0.875rem", marginBottom: "24px" }}>
                     <button
                         type="button"
                         onClick={() => navigate("/lista/pagamentos")}
                         style={{
-                            color: "#ff7300",
+                            color: "#e275c7",
                             fontWeight: "600",
                             background: "none",
                             border: "none",
@@ -151,8 +151,8 @@ function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps) {
                     >
                         Pagamentos
                     </button>
-                    <span aria-hidden="true" style={{ color: "#999999" }}>/</span>
-                    <span style={{ color: "#666666", fontWeight: "500" }}>
+                    <span aria-hidden="true" style={{ color: "#7a5961" }}>/</span>
+                    <span style={{ color: "#cc5f80", fontWeight: "500" }}>
                         Pagamento #{pagamento.idPagamento ?? idPagamento}
                     </span>
                 </nav>
@@ -162,7 +162,7 @@ function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps) {
                     style={{
                         backgroundColor: "#ffffff",
                         borderRadius: "16px",
-                        border: "1px solid #f0f0f0",
+                        border: "1px solid rgba(226, 117, 199, 0.35)",
                         padding: "24px"
                     }}
                 >
@@ -173,11 +173,11 @@ function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps) {
                                 width: "44px",
                                 height: "44px",
                                 borderRadius: "12px",
-                                backgroundColor: "#ff7300",
+                                backgroundColor: "#e275c7",
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center",
-                                color: "#ffffff",
+                                color: "#cc5f80",
                                 fontWeight: "bold"
                             }}
                         >
@@ -187,7 +187,7 @@ function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps) {
                             <h1 id="titulo-pagamento" style={{ fontSize: "1.25rem", color: "#000000", margin: 0 }}>
                                 Detalhes do pagamento
                             </h1>
-                            <p style={{ color: "#666666", fontSize: "0.875rem" }}>
+                            <p style={{ color: "#cc5f80", fontSize: "0.875rem" }}>
                                 Pagamento #{pagamento.idPagamento ?? idPagamento}
                             </p>
                         </div>
@@ -208,7 +208,7 @@ function DetalhesPagamento({ idPagamento }: DetalhesPagamentoProps) {
                             style={{
                                 backgroundColor: "#ffffff",
                                 color: "#000000",
-                                border: "1px solid #e0e0e0",
+                                border: "1px solid rgba(226, 117, 199, 0.35)",
                                 borderRadius: "10px",
                                 padding: "10px 24px",
                                 fontWeight: "bold",
@@ -231,7 +231,7 @@ interface CampoProps {
 
 function Campo({ label, valor }: CampoProps) {
     return (
-        <div style={{ padding: "14px", borderRadius: "10px", backgroundColor: "#f9f9f9" }}>
+        <div style={{ padding: "14px", borderRadius: "10px", backgroundColor: "#ffffff" }}>
             <dt style={{ fontSize: "0.7rem", color: "#777777", fontWeight: "600", textTransform: "uppercase", letterSpacing: "0.05em" }}>
                 {label}
             </dt>

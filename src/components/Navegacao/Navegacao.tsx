@@ -23,7 +23,7 @@ function Navegacao() {
 
     return (
         <header style={{
-            backgroundColor: "#ec4899",
+            backgroundColor: "#e275c7",
             height: "70px",
             display: "flex",
             alignItems: "center",
@@ -36,7 +36,7 @@ function Navegacao() {
             <span
                 onClick={() => navigate("/")}
                 style={{
-                    color: "white",
+                    color: "#cc5f80",
                     fontWeight: "800",
                     fontSize: "1.5rem",
                     cursor: "pointer"
@@ -52,7 +52,7 @@ function Navegacao() {
                 alignItems: "center"
             }}>
                 <a href="/" style={{
-                    color: "white",
+                    color: "#cc5f80",
                     textDecoration: "none",
                     fontWeight: "500"
                 }}>
@@ -71,7 +71,7 @@ function Navegacao() {
                     <>
                         <div style={{ textAlign: "right" }}>
                             <div style={{
-                                color: "white",
+                                color: "#cc5f80",
                                 fontWeight: "600",
                                 fontSize: "0.95rem"
                             }}>
@@ -80,7 +80,7 @@ function Navegacao() {
 
                             {email && (
                                 <div style={{
-                                    color: "rgba(255,255,255,0.8)",
+                                    color: "rgba(75,35,48,0.8)",
                                     fontSize: "0.75rem"
                                 }}>
                                     {email}
@@ -106,11 +106,11 @@ function Navegacao() {
                                 width: "38px",
                                 height: "38px",
                                 borderRadius: "50%",
-                                backgroundColor: "rgba(255,255,255,0.3)",
+                                backgroundColor: "rgba(75,35,48,0.12)",
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center",
-                                color: "white",
+                                color: "#cc5f80",
                                 fontWeight: "700",
                                 border: "2px solid white"
                             }}>
@@ -122,7 +122,7 @@ function Navegacao() {
                             onClick={sair}
                             style={{
                                 backgroundColor: "white",
-                                color: "#ec4899",
+                                color: "#cc5f80",
                                 border: "none",
                                 borderRadius: "6px",
                                 padding: "8px 20px",
@@ -139,7 +139,7 @@ function Navegacao() {
                             onClick={() => navigate("/login")}
                             style={{
                                 backgroundColor: "transparent",
-                                color: "white",
+                                color: "#cc5f80",
                                 border: "2px solid white",
                                 borderRadius: "6px",
                                 padding: "8px 20px",
@@ -154,7 +154,7 @@ function Navegacao() {
                             onClick={() => navigate("/cadastro")}
                             style={{
                                 backgroundColor: "white",
-                                color: "#ec4899",
+                                color: "#cc5f80",
                                 border: "none",
                                 borderRadius: "6px",
                                 padding: "8px 20px",

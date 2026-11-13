@@ -2,7 +2,7 @@
 function Rodape() {
     return (
         <footer style={{
-            backgroundColor: "#ec4899",
+            backgroundColor: "#e275c7",
             minHeight: "8vh",
             display: "flex",
             alignItems: "center",
@@ -11,7 +11,7 @@ function Rodape() {
             fontFamily: "'Segoe UI', sans-serif"
         }}>
             <p style={{
-                color: "#ffffff",
+                color: "#cc5f80",
                 fontSize: "1rem",
                 textAlign: "center",
                 margin: 0

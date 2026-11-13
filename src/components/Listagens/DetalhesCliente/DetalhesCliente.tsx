@@ -46,7 +46,7 @@ function DetalhesCliente({ idCliente }: DetalhesClienteProps) {
 
     if (loading) {
         return (
-            <div style={{ minHeight: "100vh", backgroundColor: "#f3f4f6", display: "flex", alignItems: "flex-start", justifyContent: "center", padding: "40px 16px" }}>
+            <div style={{ minHeight: "100vh", backgroundColor: "#ffffff", display: "flex", alignItems: "flex-start", justifyContent: "center", padding: "40px 16px" }}>
                 <div style={{ width: "100%", maxWidth: "900px" }}>
                     <div style={{ display: "flex", gap: "24px" }}>
                         <div style={{ width: "256px", backgroundColor: "#ffffff", borderRadius: "16px", height: "320px", flexShrink: 0 }} />
@@ -62,19 +62,19 @@ function DetalhesCliente({ idCliente }: DetalhesClienteProps) {
 
     if (error || !cliente) {
         return (
-            <div style={{ minHeight: "100vh", backgroundColor: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center", padding: "16px" }}>
+            <div style={{ minHeight: "100vh", backgroundColor: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center", padding: "16px" }}>
                 <div style={{ backgroundColor: "#ffffff", borderRadius: "16px", padding: "40px", maxWidth: "400px", width: "100%", textAlign: "center" }}>
                     <h2 style={{ fontSize: "1.1rem", fontWeight: "bold", color: "#000000", marginBottom: "8px" }}>
                         Erro ao carregar cliente
                     </h2>
 
-                    <p style={{ fontSize: "0.875rem", color: "#999999", marginBottom: "24px" }}>
+                    <p style={{ fontSize: "0.875rem", color: "#7a5961", marginBottom: "24px" }}>
                         {error || "Erro desconhecido."}
                     </p>
 
                     <button
                         onClick={() => navigate("/lista/clientes")}
-                        style={{ padding: "10px 24px", backgroundColor: "#ff7300", color: "#ffffff", border: "none", borderRadius: "10px", fontWeight: "bold", cursor: "pointer", fontSize: "0.875rem" }}
+                        style={{ padding: "10px 24px", backgroundColor: "#e275c7", color: "#cc5f80", border: "none", borderRadius: "10px", fontWeight: "bold", cursor: "pointer", fontSize: "0.875rem" }}
                     >
                         Voltar para a lista
                     </button>
@@ -84,21 +84,21 @@ function DetalhesCliente({ idCliente }: DetalhesClienteProps) {
     }
 
     return (
-        <div style={{ minHeight: "100vh", backgroundColor: "#f3f4f6", padding: "32px 16px" }}>
+        <div style={{ minHeight: "100vh", backgroundColor: "#ffffff", padding: "32px 16px" }}>
             <div style={{ width: "100%", maxWidth: "900px", margin: "0 auto" }}>
 
                 {/* Navegação */}
                 <div style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "0.875rem", marginBottom: "24px" }}>
                     <button
                         onClick={() => navigate("/lista/clientes")}
-                        style={{ color: "#ff7300", fontWeight: "600", background: "none", border: "none", cursor: "pointer", fontSize: "0.875rem" }}
+                        style={{ color: "#e275c7", fontWeight: "600", background: "none", border: "none", cursor: "pointer", fontSize: "0.875rem" }}
                     >
                         Clientes
                     </button>
 
-                    <span style={{ color: "#999999" }}>/</span>
+                    <span style={{ color: "#7a5961" }}>/</span>
 
-                    <span style={{ color: "#666666", fontWeight: "500" }}>
+                    <span style={{ color: "#cc5f80", fontWeight: "500" }}>
                         Cliente #{cliente.idCliente}
                     </span>
                 </div>
@@ -106,9 +106,9 @@ function DetalhesCliente({ idCliente }: DetalhesClienteProps) {
                 <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
 
                     {/* Card lateral */}
-                    <div style={{ width: "256px", flexShrink: 0, backgroundColor: "#ffffff", borderRadius: "16px", border: "1px solid #f0f0f0", padding: "24px", display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }}>
+                    <div style={{ width: "256px", flexShrink: 0, backgroundColor: "#ffffff", borderRadius: "16px", border: "1px solid rgba(226, 117, 199, 0.35)", padding: "24px", display: "flex", flexDirection: "column", alignItems: "center", gap: "16px" }}>
 
-                        <div style={{ width: "80px", height: "80px", borderRadius: "50%", backgroundColor: "#ff7300", display: "flex", alignItems: "center", justifyContent: "center", color: "#ffffff", fontSize: "1.5rem", fontWeight: "bold" }}>
+                        <div style={{ width: "80px", height: "80px", borderRadius: "50%", backgroundColor: "#e275c7", display: "flex", alignItems: "center", justifyContent: "center", color: "#cc5f80", fontSize: "1.5rem", fontWeight: "bold" }}>
                             <i className="pi pi-user" />
                         </div>
 
@@ -118,19 +118,19 @@ function DetalhesCliente({ idCliente }: DetalhesClienteProps) {
                             </h2>
                         </div>
 
-                        <div style={{ width: "100%", borderTop: "1px solid #f0f0f0", marginTop: "8px" }} />
+                        <div style={{ width: "100%", borderTop: "1px solid rgba(226, 117, 199, 0.35)", marginTop: "8px" }} />
 
                         <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "8px" }}>
                             <button
                                 onClick={() => navigate(`/atualizar/cliente/${cliente.idCliente}`)}
-                                style={{ width: "100%", backgroundColor: "#ff7300", color: "#ffffff", border: "none", borderRadius: "10px", padding: "10px", fontWeight: "bold", cursor: "pointer", fontSize: "0.875rem" }}
+                                style={{ width: "100%", backgroundColor: "#e275c7", color: "#cc5f80", border: "none", borderRadius: "10px", padding: "10px", fontWeight: "bold", cursor: "pointer", fontSize: "0.875rem" }}
                             >
                                 Editar Cliente
                             </button>
 
                             <button
                                 onClick={() => navigate("/lista/clientes")}
-                                style={{ width: "100%", backgroundColor: "#ffffff", color: "#000000", border: "1px solid #e0e0e0", borderRadius: "10px", padding: "10px", fontWeight: "bold", cursor: "pointer", fontSize: "0.875rem" }}
+                                style={{ width: "100%", backgroundColor: "#ffffff", color: "#000000", border: "1px solid rgba(226, 117, 199, 0.35)", borderRadius: "10px", padding: "10px", fontWeight: "bold", cursor: "pointer", fontSize: "0.875rem" }}
                             >
                                 Voltar
                             </button>
@@ -140,11 +140,11 @@ function DetalhesCliente({ idCliente }: DetalhesClienteProps) {
                     {/* Informações do cliente */}
                     <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "16px", minWidth: "280px" }}>
 
-                        <div style={{ backgroundColor: "#ffffff", borderRadius: "16px", border: "1px solid #f0f0f0", padding: "24px" }}>
+                        <div style={{ backgroundColor: "#ffffff", borderRadius: "16px", border: "1px solid rgba(226, 117, 199, 0.35)", padding: "24px" }}>
 
                             <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "20px" }}>
-                                <div style={{ width: "28px", height: "28px", borderRadius: "8px", backgroundColor: "#ff7300", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                                    <i className="pi pi-id-card" style={{ color: "#ffffff", fontSize: "0.75rem" }} />
+                                <div style={{ width: "28px", height: "28px", borderRadius: "8px", backgroundColor: "#e275c7", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                    <i className="pi pi-id-card" style={{ color: "#cc5f80", fontSize: "0.75rem" }} />
                                 </div>
 
                                 <h3 style={{ fontSize: "0.875rem", fontWeight: "bold", color: "#000000", textTransform: "uppercase", letterSpacing: "0.05em", margin: 0 }}>
@@ -161,11 +161,11 @@ function DetalhesCliente({ idCliente }: DetalhesClienteProps) {
                             </div>
                         </div>
 
-                        <div style={{ backgroundColor: "#ffffff", borderRadius: "16px", border: "1px solid #f0f0f0", padding: "24px" }}>
+                        <div style={{ backgroundColor: "#ffffff", borderRadius: "16px", border: "1px solid rgba(226, 117, 199, 0.35)", padding: "24px" }}>
 
                             <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "20px" }}>
-                                <div style={{ width: "28px", height: "28px", borderRadius: "8px", backgroundColor: "#ff7300", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                                    <i className="pi pi-address-book" style={{ color: "#ffffff", fontSize: "0.75rem" }} />
+                                <div style={{ width: "28px", height: "28px", borderRadius: "8px", backgroundColor: "#e275c7", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                    <i className="pi pi-address-book" style={{ color: "#cc5f80", fontSize: "0.75rem" }} />
                                 </div>
 
                                 <h3 style={{ fontSize: "0.875rem", fontWeight: "bold", color: "#000000", textTransform: "uppercase", letterSpacing: "0.05em", margin: 0 }}>
@@ -195,13 +195,13 @@ interface CampoProps {
 
 function Campo({ label, valor, icone }: CampoProps) {
     return (
-        <div style={{ display: "flex", alignItems: "flex-start", gap: "12px", padding: "12px", borderRadius: "10px", backgroundColor: "#f9f9f9" }}>
-            <div style={{ width: "32px", height: "32px", borderRadius: "8px", backgroundColor: "#ffffff", border: "1px solid #f0f0f0", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <i className={`pi ${icone}`} style={{ color: "#ff7300", fontSize: "0.875rem" }} />
+        <div style={{ display: "flex", alignItems: "flex-start", gap: "12px", padding: "12px", borderRadius: "10px", backgroundColor: "#ffffff" }}>
+            <div style={{ width: "32px", height: "32px", borderRadius: "8px", backgroundColor: "#ffffff", border: "1px solid rgba(226, 117, 199, 0.35)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <i className={`pi ${icone}`} style={{ color: "#e275c7", fontSize: "0.875rem" }} />
             </div>
 
             <div style={{ display: "flex", flexDirection: "column" }}>
-                <span style={{ fontSize: "0.7rem", color: "#999999", fontWeight: "600", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                <span style={{ fontSize: "0.7rem", color: "#7a5961", fontWeight: "600", textTransform: "uppercase", letterSpacing: "0.05em" }}>
                     {label}
                 </span>
 
